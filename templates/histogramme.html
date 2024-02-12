@@ -6,16 +6,6 @@
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(getChartData);
 
-    function getChartData() {
-        fetch('/monhisto/') 
-          .then(response => response.json())
-          .then(data => {
-            drawChart(data);
-          });
-      }
-            .catch(error => console.error('Erreur lors de la récupération des données :', error));
-    }
-
     function drawChart(data) {
       // Convertir les données récupérées en un tableau utilisable par Google Charts
       var dataArray = [['Date', 'Température']];
@@ -35,6 +25,16 @@
       // Créer l'histogramme
       var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
           chart.draw(dataTable, options);
+    }
+    
+     function getChartData() {
+        fetch('/monhisto/') 
+          .then(response => response.json())
+          .then(data => {
+            drawChart(data);
+          });
+      }
+            .catch(error => console.error('Erreur lors de la récupération des données :', error));
     }
   </script>
 </head>
