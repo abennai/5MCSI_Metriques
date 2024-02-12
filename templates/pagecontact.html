@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Souhaitez-vous nous contacter ?</title>
+    <title>Contact</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,14 +23,37 @@
             color: #333333;
             text-align: center;
         }
-        .contact-info {
+        form {
             margin-top: 20px;
         }
-        .contact-info p {
-            margin: 10px 0;
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
-        .contact-info strong {
-            color: #007bff;
+        textarea {
+            height: 150px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333333;
         }
     </style>
 </head>
