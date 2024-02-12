@@ -38,11 +38,18 @@
 
 <div class="container">
     <h1>Contact</h1>
-    <div class="contact-info">
-        <p><strong>Nom :</strong> Bennai</p>
-        <p><strong>Prénom :</strong> Amalia</p>
-        <p><strong>Adresse email :</strong> abennai@example.com</p>
-    </div>
+    <form action="#" method="post">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <input type="submit" value="Envoyer">
+    </form>
 </div>
 
 </body>
