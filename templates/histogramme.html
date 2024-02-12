@@ -4,37 +4,31 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(getChartData);
+    google.charts.setOnLoadCallback(drawHistogram);
 
     function drawHistogram() {
-        function drawChart(data) {
-          var dataArray = [['Date', 'Température']];
-          data.results.forEach(entry => {
-            var date = new Date(entry.Jour * 1000);
-            dataArray.push([date.toLocaleDateString(), entry.temp]);
-          });
-          var dataTable = google.visualization.arrayToDataTable(dataArray);
+      fetch('/histogramme/') // Modifier l'URL en fonction de votre route Flask
+        .then(response => response.json())
+        .then(data => drawChart(data))
+        .catch(error => console.error('Erreur lors de la récupération des données :', error));
+    }
+
+    function drawChart(data) {
+      var dataArray = [['Date', 'Température']];
+      data.results.forEach(entry => {
+        var date = new Date(entry.Jour * 1000);
+        dataArray.push([date.toLocaleDateString(), entry.temp]);
+      });
+      var dataTable = google.visualization.arrayToDataTable(dataArray);
       
-      // Configurer les options de l'histogramme
       var options = {
         title: 'Histogramme des températures',
         legend: { position: 'none' },
         histogram: { bucketSize: 1, minValue: 0, maxValue: 40 }
       };
 
-      // Créer l'histogramme
       var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-          chart.draw(dataTable, options);
-    }
-    
-     function getChartData() {
-        fetch('/monhisto/') 
-          .then(response => response.json())
-          .then(data => {
-            drawChart(data);
-          });
-      }
-            .catch(error => console.error('Erreur lors de la récupération des données :', error));
+      chart.draw(dataTable, options);
     }
   </script>
 </head>
