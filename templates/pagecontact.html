@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -23,26 +24,50 @@
             color: #333333;
             text-align: center;
         }
-        .contact-info {
+        form {
             margin-top: 20px;
         }
-        .contact-info p {
-            margin: 10px 0;
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
-        .contact-info strong {
-            color: #007bff;
+        textarea {
+            height: 150px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Contact</h1>
-    <div class="contact-info">
-        <p><strong>Nom :</strong> Bennai</p>
-        <p><strong>Prénom :</strong> Amalia</p>
-        <p><strong>Adresse email :</strong> abennai@myges.fr</p>
-    </div>
+    <h1>Contactez-nous</h1>
+    <form action="#" method="post">
+        <label for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <label for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <input type="submit" value="Envoyer">
+    </form>
 </div>
 
 </body>
