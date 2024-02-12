@@ -7,7 +7,7 @@
     google.charts.setOnLoadCallback(getChartData);
 
     function getChartData() {
-        fetch('/monhisto/') // Modifier l'URL en fonction de votre route Flask
+        fetch('/monhisto/') 
             .then(response => response.json())
             .then(data => drawChart(data))
             .catch(error => console.error('Erreur lors de la récupération des données :', error));
@@ -31,7 +31,7 @@
 
       // Créer l'histogramme
       var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-      chart.draw(dataTable, options);
+          chart.draw(dataTable, options);
     }
   </script>
 </head>
