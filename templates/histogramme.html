@@ -1,38 +1,41 @@
-<html lang="fr">
-<head>
-  <title>Histogramme des températures</title>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawHistogram);
-
-    function drawHistogram() {
-      fetch('/histogramme/') // Modifier l'URL en fonction de votre route Flask
-        .then(response => response.json())
-        .then(data => drawChart(data))
-        .catch(error => console.error('Erreur lors de la récupération des données :', error));
-    }
-
-    function drawChart(data) {
-      var dataArray = [['Date', 'Température']];
-      data.results.forEach(entry => {
-        var date = new Date(entry.Jour * 1000);
-        dataArray.push([date.toLocaleDateString(), entry.temp]);
-      });
-      var dataTable = google.visualization.arrayToDataTable(dataArray);
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Histop</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <div id="chart_div"></div>
+    <script>
+      google.charts.load('current', { packages: ['corechart'] });
+      google.charts.setOnLoadCallback(drawHistogram);
       
-      var options = {
-        title: 'Histogramme des températures',
-        legend: { position: 'none' },
-        histogram: { bucketSize: 1, minValue: 0, maxValue: 40 }
-      };
-
-      var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-      chart.draw(dataTable, options);
-    }
-  </script>
-</head>
-<body>
-  <div id="chart_div" style="width: 900px; height: 500px;"></div>
-</body>
+      function drawHistogram() {
+        function drawChart(data) {
+          var dataArray = [['Date', 'Température']];
+          data.results.forEach(entry => {
+            var date = new Date(entry.Jour * 1000);
+            dataArray.push([date.toLocaleDateString(), entry.temp]);
+          });
+          var dataTable = google.visualization.arrayToDataTable(dataArray);
+          
+          var options = {
+            title: 'Histogramme v2',
+            legend: { position: 'none' },
+            histogram: { bucketSize: 1, minValue: 0, maxValue: 40 }
+          };
+          
+          var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+          chart.draw(dataTable, options);
+        }
+        
+      
+        fetch('/monhisto/')
+          .then(response => response.json())
+          .then(data => {
+            drawChart(data);
+          });
+      }
+    </script>
+  </body>
 </html>
