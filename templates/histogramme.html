@@ -7,7 +7,7 @@
     google.charts.setOnLoadCallback(getChartData);
 
     function getChartData() {
-        fetch('/histogramme/') // Modifier l'URL en fonction de votre route Flask
+        fetch('/monhisto/') // Modifier l'URL en fonction de votre route Flask
             .then(response => response.json())
             .then(data => drawChart(data))
             .catch(error => console.error('Erreur lors de la récupération des données :', error));
