@@ -6,14 +6,14 @@
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(getChartData);
 
-    function drawChart(data) {
-      // Convertir les données récupérées en un tableau utilisable par Google Charts
-      var dataArray = [['Date', 'Température']];
-      data.results.forEach(entry => {
-        var date = new Date(entry.Jour * 1000);
-        dataArray.push([date.toLocaleDateString(), entry.temp]);
-      });
-      var dataTable = google.visualization.arrayToDataTable(dataArray);
+    function drawHistogram() {
+        function drawChart(data) {
+          var dataArray = [['Date', 'Température']];
+          data.results.forEach(entry => {
+            var date = new Date(entry.Jour * 1000);
+            dataArray.push([date.toLocaleDateString(), entry.temp]);
+          });
+          var dataTable = google.visualization.arrayToDataTable(dataArray);
       
       // Configurer les options de l'histogramme
       var options = {
