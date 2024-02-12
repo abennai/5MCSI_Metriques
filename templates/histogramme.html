@@ -8,8 +8,11 @@
 
     function getChartData() {
         fetch('/monhisto/') 
-            .then(response => response.json())
-            .then(data => drawChart(data))
+          .then(response => response.json())
+          .then(data => {
+            drawChart(data);
+          });
+      }
             .catch(error => console.error('Erreur lors de la récupération des données :', error));
     }
 
